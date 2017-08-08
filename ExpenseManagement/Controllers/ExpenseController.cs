@@ -15,10 +15,10 @@ namespace ExpenseManagement.Controllers
     {
         private ApplicationDbContext _Context;
         private IExpenseItemRepository repository;
-        private ExpenseRepository expenserepo;
-        public ExpenseController(IExpenseItemRepository repo)
+        private IExpenseRepository expenserepo;
+        public ExpenseController(IExpenseItemRepository repo,IExpenseRepository repo2)
         {
-
+            expenserepo = repo2;
             repository = repo;
         }
         // GET: Expense
@@ -27,13 +27,31 @@ namespace ExpenseManagement.Controllers
             return View();
         }
 
-        public ActionResult List()
+
+        public ViewResult List(ExpenseCart cart)
         {
             var userId = User.Identity.GetUserId();
 
-            var items = repository.GetExpenseItemsByUserId(userId);
+            var items = cart.Lines;
 
             return View(items);
+
+        }
+        [HttpPost]
+        public ActionResult List(ExpenseCart cart, string ViewModel)
+        {
+            var userId = User.Identity.GetUserId();
+            var expense = cart.GetExpense();
+            expense.UserId = userId;
+            expense.DateOfExpense = DateTime.Now;
+            expenserepo.AddExpense(expense);
+
+            var items = cart.Lines;
+            foreach (var item in items) {
+                item.ExpenseId = expense.Id;
+                repository.AddExpenseItem(item);
+                    }
+            return RedirectToAction("Index","Home");
 
         }
         public ActionResult AddExpense()
@@ -43,22 +61,23 @@ namespace ExpenseManagement.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult AddExpense(ExpenseFormViewModel ViewModel)
+        public ActionResult AddExpense(ExpenseCart cart,ExpenseFormViewModel ViewModel)
         {
-
-
             var userId = User.Identity.GetUserId();
 
             VPExpenseItem item = new VPExpenseItem
             {
-                UserId = userId,
-                Amount = ViewModel.Amount,
-                DateOfExpense = ViewModel.GetDateTime(),
-                Description = ViewModel.Description,
+                Amount=ViewModel.Amount,
+                DateOfExpense=ViewModel.GetDateTime(),
+                UserId=userId,
+                Description=ViewModel.Description
+
             };
-        
-            repository.AddExpenseItem(item);
+
+            cart.AddItem(item);
+              
             return RedirectToAction("Create","Expense");
         }
+
     }
 }

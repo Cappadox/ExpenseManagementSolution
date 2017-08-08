@@ -12,7 +12,7 @@ namespace ExpenseManagement.Core.Models
         public DateTime DateOfExpense { get; set; }
         public float Amount { get; set; }
         public string Description { get; set; }
-        public string ExpenseId { get; set; }
+        public int? ExpenseId { get; set; }
         //public VPExpense Expense { get; set; }
 
 

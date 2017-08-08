@@ -212,12 +212,15 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Binders\ExpenseCartBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Core\Models\ApplicationUser.cs" />
+    <Compile Include="Core\Models\ExpenseCart.cs" />
     <Compile Include="Core\Models\IApplicationDbContext.cs" />
+    <Compile Include="Core\Models\UnitOfWork.cs" />
     <Compile Include="Core\Models\VPExpense.cs" />
     <Compile Include="Core\Models\VPExpenseHistory.cs" />
     <Compile Include="Core\Models\VPExpenseItem.cs" />
@@ -249,6 +252,10 @@
     <Compile Include="Migrations\201708081403591_extendtables.cs" />
     <Compile Include="Migrations\201708081403591_extendtables.Designer.cs">
       <DependentUpon>201708081403591_extendtables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708081708238_changeidtype.cs" />
+    <Compile Include="Migrations\201708081708238_changeidtype.Designer.cs">
+      <DependentUpon>201708081708238_changeidtype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\AccountViewModels.cs" />
@@ -347,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708081403591_extendtables.resx">
       <DependentUpon>201708081403591_extendtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708081708238_changeidtype.resx">
+      <DependentUpon>201708081708238_changeidtype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

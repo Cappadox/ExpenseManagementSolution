@@ -66,7 +66,7 @@ namespace ExpenseManagement.App_Start
         {
             kernel.Bind<IExpenseItemRepository>().To<ExpenseItemRepository>();
             kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
-
+            kernel.Bind<IExpenseRepository>().To<ExpenseRepository>();
         }
     }
 }

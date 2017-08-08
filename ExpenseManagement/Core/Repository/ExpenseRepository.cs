@@ -8,9 +8,9 @@ namespace ExpenseManagement.Core.Repository
 {
     public class ExpenseRepository : IExpenseRepository
     {
-        private IApplicationDbContext context;
+        private ApplicationDbContext context;
 
-        public ExpenseRepository(IApplicationDbContext _context)
+        public ExpenseRepository(ApplicationDbContext _context)
         {
             context = _context;
         }
@@ -18,6 +18,8 @@ namespace ExpenseManagement.Core.Repository
         public void AddExpense(VPExpense item)
         {
             context.Expense.Add(item);
+            context.SaveChanges();
+          
         }
 
         public void RemoveExpense(VPExpense item)
