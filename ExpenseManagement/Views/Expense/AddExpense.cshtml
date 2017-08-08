@@ -1,0 +1,38 @@
+﻿@model ExpenseManagement.Core.ViewModels.ExpenseFormViewModel
+
+@{
+    ViewBag.Title = "AddExpense";
+}
+
+<h2>AddExpense</h2>
+
+
+@using (Html.BeginForm("AddExpense", "Expense"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Amount)
+        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(m => m.Amount)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", placeholder = "eg 01.01.2015" })
+        @Html.ValidationMessageFor(m => m.Date)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", autofocus="autofocus" })
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+}
+<div>
+    @Html.ActionLink("Back to List", "Create")
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
