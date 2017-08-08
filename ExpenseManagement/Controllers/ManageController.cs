@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ExpenseManagement.Core.Models;
+using ExpenseManagement.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ExpenseManagement.Models;
 
 namespace ExpenseManagement.Controllers
 {

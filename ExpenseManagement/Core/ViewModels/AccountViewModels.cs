@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ExpenseManagement.Models
+namespace ExpenseManagement.Core.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -31,6 +31,7 @@ namespace ExpenseManagement.Models
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
+
         public string ReturnUrl { get; set; }
 
         [Display(Name = "Remember this browser?")]
