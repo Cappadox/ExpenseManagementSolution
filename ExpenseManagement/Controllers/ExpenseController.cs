@@ -6,15 +6,18 @@ using System.Web.Mvc;
 using ExpenseManagement.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using ExpenseManagement.Core.Models;
+using ExpenseManagement.Core.Repository;
 
 namespace ExpenseManagement.Controllers
 {
     public class ExpenseController : Controller
     {
         private ApplicationDbContext _Context;
+        private ExpenseItemRepository repo;
 
         public ExpenseController()
         {
+                    repo=new ExpenseItemRepository();
                 _Context=new ApplicationDbContext();
         }
         // GET: Expense
@@ -43,8 +46,7 @@ namespace ExpenseManagement.Controllers
                 Description = ViewModel.Description,
             };
 
-            _Context.ExpenseItem.Add(item);
-            _Context.SaveChanges();
+            repo.AddExpenseItem(item);
             return RedirectToAction("Create","Expense");
         }
     }
