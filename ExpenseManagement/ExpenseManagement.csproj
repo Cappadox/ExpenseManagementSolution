@@ -221,9 +221,11 @@
     <Compile Include="Core\Models\VPExpense.cs" />
     <Compile Include="Core\Models\VPExpenseHistory.cs" />
     <Compile Include="Core\Models\VPExpenseItem.cs" />
+    <Compile Include="Core\Repository\ExpenseHistoryRepository.cs" />
     <Compile Include="Core\Repository\ExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\ExpenseRepository.cs" />
     <Compile Include="Core\Repository\IExpenseItemRepository.cs" />
+    <Compile Include="Core\Repository\IExpenseRepository.cs" />
     <Compile Include="Core\ViewModels\ExpenseFormViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -243,6 +245,10 @@
     <Compile Include="Migrations\201708081242074_ExtendAppUser.cs" />
     <Compile Include="Migrations\201708081242074_ExtendAppUser.Designer.cs">
       <DependentUpon>201708081242074_ExtendAppUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708081403591_extendtables.cs" />
+    <Compile Include="Migrations\201708081403591_extendtables.Designer.cs">
+      <DependentUpon>201708081403591_extendtables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\AccountViewModels.cs" />
@@ -313,6 +319,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Expense\AddExpense.cshtml" />
     <Content Include="Views\Expense\Create.cshtml" />
+    <Content Include="Views\Expense\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708081242074_ExtendAppUser.resx">
       <DependentUpon>201708081242074_ExtendAppUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708081403591_extendtables.resx">
+      <DependentUpon>201708081403591_extendtables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

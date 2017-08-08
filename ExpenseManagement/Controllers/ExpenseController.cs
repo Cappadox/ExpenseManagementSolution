@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,26 +15,37 @@ namespace ExpenseManagement.Controllers
     {
         private ApplicationDbContext _Context;
         private IExpenseItemRepository repository;
-
+        private ExpenseRepository expenserepo;
         public ExpenseController(IExpenseItemRepository repo)
         {
+
             repository = repo;
         }
         // GET: Expense
         public ActionResult Create()
-        {   
+        {
             return View();
         }
 
+        public ActionResult List()
+        {
+            var userId = User.Identity.GetUserId();
 
+            var items = repository.GetExpenseItemsByUserId(userId);
+
+            return View(items);
+
+        }
         public ActionResult AddExpense()
         {
             ExpenseFormViewModel ViewModel=new ExpenseFormViewModel();
             return View(ViewModel);
         }
         [HttpPost]
+        [Authorize]
         public ActionResult AddExpense(ExpenseFormViewModel ViewModel)
         {
+
 
             var userId = User.Identity.GetUserId();
 
@@ -44,7 +56,7 @@ namespace ExpenseManagement.Controllers
                 DateOfExpense = ViewModel.GetDateTime(),
                 Description = ViewModel.Description,
             };
-
+        
             repository.AddExpenseItem(item);
             return RedirectToAction("Create","Expense");
         }

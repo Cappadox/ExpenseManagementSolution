@@ -1,3 +1,4 @@
+using ExpenseManagement.Core.Models;
 using ExpenseManagement.Core.Repository;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ExpenseManagement.App_Start.NinjectWebCommon), "Start")]
@@ -64,6 +65,8 @@ namespace ExpenseManagement.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IExpenseItemRepository>().To<ExpenseItemRepository>();
-        }        
+            kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
+
+        }
     }
 }

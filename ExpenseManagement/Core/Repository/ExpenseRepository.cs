@@ -6,13 +6,13 @@ using ExpenseManagement.Core.Models;
 
 namespace ExpenseManagement.Core.Repository
 {
-    public class ExpenseRepository
+    public class ExpenseRepository : IExpenseRepository
     {
-        private ApplicationDbContext context;
+        private IApplicationDbContext context;
 
-        public ExpenseRepository()
+        public ExpenseRepository(IApplicationDbContext _context)
         {
-            context=new ApplicationDbContext();
+            context = _context;
         }
 
         public void AddExpense(VPExpense item)
