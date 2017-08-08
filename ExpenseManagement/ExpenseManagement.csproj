@@ -203,8 +203,6 @@
     <Compile Include="Core\Models\VPExpense.cs" />
     <Compile Include="Core\Models\VPExpenseHistory.cs" />
     <Compile Include="Core\Models\VPExpenseItem.cs" />
-    <Compile Include="Core\Repository\ExpenseItemRepository.cs" />
-    <Compile Include="Core\Repository\ExpenseRepository.cs" />
     <Compile Include="Core\ViewModels\ExpenseFormViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,10 +218,6 @@
     <Compile Include="Migrations\201708081113041_ChangeForTestForm.cs" />
     <Compile Include="Migrations\201708081113041_ChangeForTestForm.Designer.cs">
       <DependentUpon>201708081113041_ChangeForTestForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708081242074_ExtendAppUser.cs" />
-    <Compile Include="Migrations\201708081242074_ExtendAppUser.Designer.cs">
-      <DependentUpon>201708081242074_ExtendAppUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\AccountViewModels.cs" />
@@ -315,9 +309,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708081113041_ChangeForTestForm.resx">
       <DependentUpon>201708081113041_ChangeForTestForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708081242074_ExtendAppUser.resx">
-      <DependentUpon>201708081242074_ExtendAppUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
