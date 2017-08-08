@@ -7,7 +7,7 @@ using ExpenseManagement.Core.Models;
 
 namespace ExpenseManagement.Core.Repository
 {
-    public class ExpenseItemRepository
+    public class ExpenseItemRepository:IExpenseItemRepository
     {
         private readonly ApplicationDbContext _Context;
 

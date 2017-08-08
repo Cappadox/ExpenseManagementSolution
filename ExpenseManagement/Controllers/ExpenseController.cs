@@ -13,12 +13,11 @@ namespace ExpenseManagement.Controllers
     public class ExpenseController : Controller
     {
         private ApplicationDbContext _Context;
-        private ExpenseItemRepository repo;
+        private IExpenseItemRepository repository;
 
-        public ExpenseController()
+        public ExpenseController(IExpenseItemRepository repo)
         {
-                    repo=new ExpenseItemRepository();
-                _Context=new ApplicationDbContext();
+            repository = repo;
         }
         // GET: Expense
         public ActionResult Create()
@@ -46,7 +45,7 @@ namespace ExpenseManagement.Controllers
                 Description = ViewModel.Description,
             };
 
-            repo.AddExpenseItem(item);
+            repository.AddExpenseItem(item);
             return RedirectToAction("Create","Expense");
         }
     }
