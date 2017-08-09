@@ -48,4 +48,12 @@
     </tr>
 }
 
+
 </table>
+@using (Html.BeginForm("List", "Expense"))
+{
+    <div class="form-group">
+        @Html.TextBox("Description")
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+}
