@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ExpenseManagement.Core.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -11,6 +7,7 @@ using ExpenseManagement.Core.Repository;
 
 namespace ExpenseManagement.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class ExpenseController : Controller
     {
         private ApplicationDbContext _Context;
@@ -47,6 +44,7 @@ namespace ExpenseManagement.Controllers
             expense.Description = description;
             expense.ModifyBy = User.Identity.GetUserName();
             expense.ModifyDate = DateTime.Now;
+
             VPExpenseHistory history = new VPExpenseHistory
             {
                 ModifyBy = User.Identity.GetUserName(),
@@ -64,7 +62,7 @@ namespace ExpenseManagement.Controllers
             return View(ViewModel);
         }
 
-        [HttpPost, Authorize(Roles = "Manager"), ValidateAntiForgeryToken]
+        [HttpPost, Authorize(Roles = "Employee"), ValidateAntiForgeryToken]
         public ActionResult AddExpense(ExpenseCart cart, ExpenseFormViewModel ViewModel)
         {
 
