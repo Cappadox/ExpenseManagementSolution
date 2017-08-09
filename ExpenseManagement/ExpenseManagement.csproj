@@ -227,6 +227,7 @@
     <Compile Include="Core\Repository\ExpenseHistoryRepository.cs" />
     <Compile Include="Core\Repository\ExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\ExpenseRepository.cs" />
+    <Compile Include="Core\Repository\IExpenseHistoryRepository.cs" />
     <Compile Include="Core\Repository\IExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\IExpenseRepository.cs" />
     <Compile Include="Core\ViewModels\ExpenseFormViewModel.cs" />
@@ -256,6 +257,10 @@
     <Compile Include="Migrations\201708081708238_changeidtype.cs" />
     <Compile Include="Migrations\201708081708238_changeidtype.Designer.cs">
       <DependentUpon>201708081708238_changeidtype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091350417_extendtableexpenses.cs" />
+    <Compile Include="Migrations\201708091350417_extendtableexpenses.Designer.cs">
+      <DependentUpon>201708091350417_extendtableexpenses.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\AccountViewModels.cs" />
@@ -358,6 +363,12 @@
     <EmbeddedResource Include="Migrations\201708081708238_changeidtype.resx">
       <DependentUpon>201708081708238_changeidtype.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091350417_extendtableexpenses.resx">
+      <DependentUpon>201708091350417_extendtableexpenses.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

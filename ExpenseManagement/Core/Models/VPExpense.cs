@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,16 +16,18 @@ namespace ExpenseManagement.Core.Models
         }
         [Key]
         public int Id { get; set; }
-        public ApplicationUser Users { get; set; }
         [Required]
         public string UserId { get; set; }
-        DateTime ModifyDate { get; set; }
-        string ModifyBy { get; set; }
-        int StatusId { get; set; }
+        public DateTime ModifyDate { get; set; }
+        public string ModifyBy { get; set; }
         public DateTime? DateOfExpense { get; set; }
-        string RejectionComment { get; set; }
-        string Description { get; set; }
+        public string RejectionComment { get; set; }
+        public string Description { get; set; }
         public ICollection<VPExpenseItem> ExpenseItems { get; set; }
+
+        public int? StatusId { get; set; }
+
+        [ForeignKey("StatusId")]
         public VPExpenseHistory ExpenseHistory { get; set; }
 
     }

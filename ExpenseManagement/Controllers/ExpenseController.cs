@@ -16,7 +16,7 @@ namespace ExpenseManagement.Controllers
         private ApplicationDbContext _Context;
         private IExpenseItemRepository repository;
         private IExpenseRepository expenserepo;
-        public ExpenseController(IExpenseItemRepository repo,IExpenseRepository repo2)
+        public ExpenseController(IExpenseItemRepository repo, IExpenseRepository repo2)
         {
             expenserepo = repo2;
             repository = repo;
@@ -38,45 +38,62 @@ namespace ExpenseManagement.Controllers
 
         }
         [HttpPost]
-        public ActionResult List(ExpenseCart cart, string ViewModel)
+        public ActionResult List(ExpenseCart cart, string description)
         {
             var userId = User.Identity.GetUserId();
             var expense = cart.GetExpense();
             expense.UserId = userId;
             expense.DateOfExpense = DateTime.Now;
+            expense.Description = description;
+            expense.ModifyBy = User.Identity.GetUserName();
+            expense.ModifyDate = DateTime.Now;
+            VPExpenseHistory history = new VPExpenseHistory
+            {
+                ModifyBy = User.Identity.GetUserName(),
+
+            };
+            expense.ExpenseHistory = history;
             expenserepo.AddExpense(expense);
 
-            var items = cart.Lines;
-            foreach (var item in items) {
-                item.ExpenseId = expense.Id;
-                repository.AddExpenseItem(item);
-                    }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
 
         }
         public ActionResult AddExpense()
         {
-            ExpenseFormViewModel ViewModel=new ExpenseFormViewModel();
+            ExpenseFormViewModel ViewModel = new ExpenseFormViewModel();
             return View(ViewModel);
         }
-        [HttpPost]
-        [Authorize]
-        public ActionResult AddExpense(ExpenseCart cart,ExpenseFormViewModel ViewModel)
+
+        [HttpPost, Authorize(Roles = "Manager"), ValidateAntiForgeryToken]
+        public ActionResult AddExpense(ExpenseCart cart, ExpenseFormViewModel ViewModel)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View("AddExpense", ViewModel);
+
+            }
+
             var userId = User.Identity.GetUserId();
+
+            VPExpenseHistory history = new VPExpenseHistory
+            {
+                ModifyBy = User.Identity.GetUserName(),
+
+            };
 
             VPExpenseItem item = new VPExpenseItem
             {
-                Amount=ViewModel.Amount,
-                DateOfExpense=ViewModel.GetDateTime(),
-                UserId=userId,
-                Description=ViewModel.Description
+                Amount = ViewModel.Amount,
+                DateOfExpense = ViewModel.GetDateTime(),
+                UserId = userId,
+                Description = ViewModel.Description
 
             };
 
             cart.AddItem(item);
-              
-            return RedirectToAction("Create","Expense");
+
+            return RedirectToAction("Create", "Expense");
         }
 
     }

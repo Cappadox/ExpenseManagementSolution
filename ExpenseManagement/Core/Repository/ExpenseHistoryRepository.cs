@@ -6,7 +6,7 @@ using ExpenseManagement.Core.Models;
 
 namespace ExpenseManagement.Core.Repository
 {
-    public class ExpenseHistoryRepository
+    public class ExpenseHistoryRepository : IExpenseHistoryRepository
     {
         private IApplicationDbContext context;
 
