@@ -15,10 +15,10 @@ namespace ExpenseManagement.Controllers
     {
         private ApplicationDbContext _Context;
         private IExpenseItemRepository repository;
-        private ExpenseRepository expenserepo;
-        public ExpenseController(IExpenseItemRepository repo)
+        private IExpenseRepository expenserepo;
+        public ExpenseController(IExpenseItemRepository repo,IExpenseRepository repo2)
         {
-
+            expenserepo = repo2;
             repository = repo;
         }
         // GET: Expense
