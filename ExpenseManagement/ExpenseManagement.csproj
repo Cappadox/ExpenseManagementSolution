@@ -233,6 +233,7 @@
     <Compile Include="Core\Repository\IExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\IExpenseRepository.cs" />
     <Compile Include="Core\ViewModels\ExpenseFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\ExpenseHistoryViewModel.cs" />
     <Compile Include="Core\ViewModels\ExpenseViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +273,10 @@
     <Compile Include="Migrations\201708101120118_Expenseitemid.cs" />
     <Compile Include="Migrations\201708101120118_Expenseitemid.Designer.cs">
       <DependentUpon>201708101120118_Expenseitemid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101418179_statusid.cs" />
+    <Compile Include="Migrations\201708101418179_statusid.Designer.cs">
+      <DependentUpon>201708101418179_statusid.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\AccountViewModels.cs" />
@@ -385,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708101120118_Expenseitemid.resx">
       <DependentUpon>201708101120118_Expenseitemid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101418179_statusid.resx">
+      <DependentUpon>201708101418179_statusid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

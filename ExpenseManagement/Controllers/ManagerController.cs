@@ -14,9 +14,11 @@ namespace ExpenseManagement.Controllers
     {
         private IExpenseRepository repository;
         private IExpenseItemRepository itemrepo;
+        private IExpenseHistoryRepository HistoryRepository;
 
-        public ManagerController(IExpenseRepository repo, IExpenseItemRepository item)
+        public ManagerController(IExpenseRepository repo, IExpenseItemRepository item,IExpenseHistoryRepository historyrepo)
         {
+            HistoryRepository = historyrepo;
             repository = repo;
             itemrepo = item;
         }
@@ -53,7 +55,9 @@ namespace ExpenseManagement.Controllers
        
         public ActionResult SendExpense(int id)
         {
-
+        var expense=repository.GetExpense(id);
+            int status = (expense.StatusId);
+          HistoryRepository.UpdateExpenseHistory(id);
             return RedirectToAction("Index", "Home");
         }
     }

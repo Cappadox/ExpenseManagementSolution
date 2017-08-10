@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using ExpenseManagement.Core.Models;
@@ -53,7 +54,23 @@ namespace ExpenseManagement.Core.Repository
                 return "no user";
         }
 
-       
-       
+        public VPExpenseHistory GetExpenseHistory(int id)
+        {
+            var expense = context.Expense.FirstOrDefault(a => a.Id == id);
+            
+            return expense.ExpenseHistory;
+        }
+
+        public void UpdateExpenseHistory(int id,VPExpenseHistory history)
+        {
+            var expense = context.Expense.FirstOrDefault(a => a.Id == id);
+            expense.ExpenseHistory = history;
+            context.Expense.AddOrUpdate(expense);
+        }
+
+        public VPExpense GetExpense(int id)
+        {
+            return context.Expense.FirstOrDefault(a => a.Id == id);
+        }
     }
 }

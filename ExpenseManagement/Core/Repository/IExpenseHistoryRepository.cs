@@ -6,5 +6,6 @@ namespace ExpenseManagement.Core.Repository
     {
         void AddExpenseHistory(VPExpenseHistory item);
         void RemoveExpenseHistory(VPExpenseHistory item);
+        void UpdateExpenseHistory(int id);
     }
 }

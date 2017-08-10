@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+
 }
 
 <h2>Details</h2>
@@ -26,9 +27,10 @@
 
 @foreach (var item in Model) {
     <tr>
-  @item.ExpenseId
+  @TempData["id"]=item.ExpenseId
         <td>
             @Html.DisplayFor(modelItem => item.DateOfExpense)
+            
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Amount)
@@ -40,9 +42,8 @@
 }
 
 </table>
-@using (Html.BeginForm("SendExpense", "Manager"))
+@using (Html.BeginForm("SendExpense", "Manager",new {id=TempData["id"] }))
 {
-    @Html.HiddenFor(m=>m.FirstOrDefault().ExpenseId)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary btn-lg">Approve</button>
 }

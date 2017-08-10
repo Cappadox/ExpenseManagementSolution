@@ -25,7 +25,7 @@ namespace ExpenseManagement.Core.Models
         public string Description { get; set; }
         public ICollection<VPExpenseItem> ExpenseItems { get; set; }
 
-        public int? StatusId { get; set; }
+        public int StatusId { get; set; }
 
         [ForeignKey("StatusId")]
         public VPExpenseHistory ExpenseHistory { get; set; }
