@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExpenseManagement.Core.Models
 {
@@ -12,8 +13,9 @@ namespace ExpenseManagement.Core.Models
         public DateTime DateOfExpense { get; set; }
         public float Amount { get; set; }
         public string Description { get; set; }
-        public int? ExpenseId { get; set; }
-        //public VPExpense Expense { get; set; }
+        public int ExpenseId { get; set; }
+        [ForeignKey("ExpenseId")]
+        public VPExpense Expense { get; set; }
 
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ExpenseManagement.Core.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace ExpenseManagement.Core.Repository
 {
@@ -39,5 +40,20 @@ namespace ExpenseManagement.Core.Repository
         {
             return context.Expense.ToList();
         }
+
+        public string GetUsername(string userid)
+        {
+            ApplicationUser currentUser = context.Users.FirstOrDefault(x =>x.Id==userid);
+            if (currentUser.Id != null)
+            {
+                return currentUser.UserName;
+            }
+
+            else
+                return "no user";
+        }
+
+       
+       
     }
 }

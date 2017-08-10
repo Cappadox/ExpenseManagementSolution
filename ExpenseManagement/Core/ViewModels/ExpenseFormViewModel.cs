@@ -8,7 +8,7 @@ namespace ExpenseManagement.Core.ViewModels
 {
     public class ExpenseFormViewModel
     {
-
+        public int Expenseid { get; set; }
         public int Id { get; set; }
 
         [Required]

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExpenseManagement.Core.Models.VPExpense>
+﻿@model IEnumerable<ExpenseManagement.Core.ViewModels.ExpenseViewModel>
 
 @{
     ViewBag.Title = "ExpenseList";
@@ -12,10 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfExpense)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
         </th>
         <th></th>
     </tr>
@@ -23,15 +26,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DateOfExpense)
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.id }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id  })
         </td>
     </tr>
 }

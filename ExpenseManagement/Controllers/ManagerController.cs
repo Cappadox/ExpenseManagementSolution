@@ -3,24 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ExpenseManagement.Core.Models;
 using ExpenseManagement.Core.Repository;
 using ExpenseManagement.Core.ViewModels;
 
 namespace ExpenseManagement.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
         private IExpenseRepository repository;
+        private IExpenseItemRepository itemrepo;
 
-        public ManagerController(IExpenseRepository repo)
+        public ManagerController(IExpenseRepository repo, IExpenseItemRepository item)
         {
             repository = repo;
+            itemrepo = item;
         }
         // GET: Manager
-        [Authorize(Roles = "Manager")]
+        
         public ActionResult ExpenseList()
         {
-            return View(repository.GetExpenses());
+            var expenses = repository.GetExpenses();
+            var viewmodel = new List<ExpenseViewModel>();
+           
+            
+            foreach (var item in expenses)
+            {
+                viewmodel.Add(new ExpenseViewModel()
+                {
+                    id=item.Id,
+                    Description = item.Description,
+                    Date = item.DateOfExpense,
+                    Username = repository.GetUsername(item.UserId)
+                });
+
+            }
+            return View(viewmodel);
+        }
+
+        public ActionResult Details(int id)
+        {
+            TempData["id"] = id;
+            return View(itemrepo.GetExpenseItemsByExpenseId(id));
+
+        }
+
+        [HttpPost]
+       
+        public ActionResult SendExpense(int id)
+        {
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

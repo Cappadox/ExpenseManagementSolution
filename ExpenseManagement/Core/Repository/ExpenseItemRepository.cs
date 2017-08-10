@@ -35,6 +35,16 @@ namespace ExpenseManagement.Core.Repository
 
         }
 
+        
+
+        public IEnumerable<VPExpenseItem> GetExpenseItemsByExpenseId(int expenseid)
+        {
+            return _Context.ExpenseItem
+                .Where(g =>
+                    g.ExpenseId == expenseid)
+                .ToList();
+
+        }
 
     }
 }
