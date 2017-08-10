@@ -8,5 +8,6 @@ namespace ExpenseManagement.Core.Repository
         void AddExpense(VPExpense item);
         IEnumerable<VPExpense> GetExpenseItemsByUserId(string userId);
         void RemoveExpense(VPExpense item);
+        IEnumerable<VPExpense> GetExpenses();
     }
 }

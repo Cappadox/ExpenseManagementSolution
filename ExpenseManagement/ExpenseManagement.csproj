@@ -233,6 +233,7 @@
     <Compile Include="Core\Repository\IExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\IExpenseRepository.cs" />
     <Compile Include="Core\ViewModels\ExpenseFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\ExpenseViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,6 +264,10 @@
     <Compile Include="Migrations\201708091350417_extendtableexpenses.cs" />
     <Compile Include="Migrations\201708091350417_extendtableexpenses.Designer.cs">
       <DependentUpon>201708091350417_extendtableexpenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708100823120_addsupervisoridtoappuser.cs" />
+    <Compile Include="Migrations\201708100823120_addsupervisoridtoappuser.Designer.cs">
+      <DependentUpon>201708100823120_addsupervisoridtoappuser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\ViewModels\AccountViewModels.cs" />
@@ -334,11 +339,11 @@
     <Content Include="Views\Expense\AddExpense.cshtml" />
     <Content Include="Views\Expense\Create.cshtml" />
     <Content Include="Views\Expense\List.cshtml" />
+    <Content Include="Views\Manager\ExpenseList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Accountant\" />
-    <Folder Include="Views\Manager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -369,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708091350417_extendtableexpenses.resx">
       <DependentUpon>201708091350417_extendtableexpenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708100823120_addsupervisoridtoappuser.resx">
+      <DependentUpon>201708100823120_addsupervisoridtoappuser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@ using ExpenseManagement.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Web.Security;
 
 namespace ExpenseManagement.Controllers
 {
@@ -69,6 +70,8 @@ namespace ExpenseManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+          var role = UserManager.GetRolesAsync(User.Identity.GetUserId());
+            Session["role"] = role.ToString();
             if (!ModelState.IsValid)
             {
                 return View(model);

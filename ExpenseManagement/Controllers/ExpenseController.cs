@@ -4,6 +4,7 @@ using ExpenseManagement.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using ExpenseManagement.Core.Models;
 using ExpenseManagement.Core.Repository;
+using System.Web.Security;
 
 namespace ExpenseManagement.Controllers
 {

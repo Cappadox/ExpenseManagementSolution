@@ -35,5 +35,9 @@ namespace ExpenseManagement.Core.Repository
                 .ToList();
         }
 
+        public IEnumerable<VPExpense> GetExpenses()
+        {
+            return context.Expense.ToList();
+        }
     }
 }

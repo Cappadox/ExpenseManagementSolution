@@ -60,7 +60,8 @@ namespace ExpenseManagement.Migrations
             {
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
-                var userToInsert = new ApplicationUser { Email = "employee@example.com", PhoneNumber = "0797697898", UserName = "employee@example.com" };
+                ApplicationUser currentUser = context.Users.FirstOrDefault(x =>x.Email=="manager@example.com");
+                var userToInsert = new ApplicationUser { Email = "employee@example.com", PhoneNumber = "0797697898", UserName = "employee@example.com", SuperVisorId=currentUser.Id };
                 userManager.Create(userToInsert, "Password@123");
                 UserManager.AddToRole(userToInsert.Id, "Employee");
 
