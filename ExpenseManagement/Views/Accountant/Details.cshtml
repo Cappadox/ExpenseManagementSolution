@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ExpenseManagement.Core.Models.VPExpenseItem>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfExpense)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @TempData["id"]=item.ExpenseId
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfExpense)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+    }
+
+</table>
+@using (Html.BeginForm("PayExpense", "Accountant", new { id = TempData["id"] }))
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary btn-lg">Approve</button>
+}

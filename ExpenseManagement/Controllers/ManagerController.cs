@@ -16,7 +16,8 @@ namespace ExpenseManagement.Controllers
         private IExpenseItemRepository itemrepo;
         private IExpenseHistoryRepository HistoryRepository;
 
-        public ManagerController(IExpenseRepository repo, IExpenseItemRepository item,IExpenseHistoryRepository historyrepo)
+        public ManagerController(IExpenseRepository repo, IExpenseItemRepository item,
+            IExpenseHistoryRepository historyrepo)
         {
             HistoryRepository = historyrepo;
             repository = repo;
@@ -57,7 +58,7 @@ namespace ExpenseManagement.Controllers
         {
         var expense=repository.GetExpense(id);
             int status = (expense.StatusId);
-          HistoryRepository.UpdateExpenseHistory(id);
+          HistoryRepository.UpdateExpenseHistory(status);
             return RedirectToAction("Index", "Home");
         }
     }

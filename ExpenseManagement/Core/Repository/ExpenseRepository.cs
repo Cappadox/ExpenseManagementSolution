@@ -72,5 +72,10 @@ namespace ExpenseManagement.Core.Repository
         {
             return context.Expense.FirstOrDefault(a => a.Id == id);
         }
+        public float ComputeTotalValue(int id)
+        {
+            return lineCollection.Sum(e => e.Amount);
+
+        }
     }
 }

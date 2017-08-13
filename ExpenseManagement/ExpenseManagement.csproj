@@ -350,10 +350,11 @@
     <Content Include="Views\Expense\List.cshtml" />
     <Content Include="Views\Manager\ExpenseList.cshtml" />
     <Content Include="Views\Manager\Details.cshtml" />
+    <Content Include="Views\Accountant\PendingExpenses.cshtml" />
+    <Content Include="Views\Accountant\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Accountant\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
