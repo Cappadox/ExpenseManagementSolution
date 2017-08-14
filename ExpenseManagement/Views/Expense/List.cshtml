@@ -1,59 +1,54 @@
-﻿@model IEnumerable<ExpenseManagement.Core.Models.VPExpenseItem>
+﻿@model ExpenseManagement.Core.ViewModels.ExpenseCartViewModel
 
-@{
-    ViewBag.Title = "List";
-}
 
-<h2>List</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<style>
+    #cartTable td {
+        vertical-align: middle;
+    }
+</style>
+<h2>Your cart</h2>
+<table id="cartTable" class="table">
+    <thead>
     <tr>
-        <th>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfExpense)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-        </th>
-        <th></th>
+        <th class="=text-center">Date</th>
+        <th class="text-left">Description</th>
+        <th class="text-right">Price</th>
     </tr>
-
-@foreach (var item in Model) {
+    </thead>
+    <tbody>
+    @foreach (var line in Model.Cart.Lines)
+    {
+        <tr>
+            <td class="text-left">@line.DateOfExpense</td>
+            <td class="text-left">@line.Description</td>
+            <td class="text-right">@line.Amount.ToString("c")</td>
+            @*<td>
+                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                {
+                    @Html.Hidden("ProductId", line.Product.ProductID)
+                    @Html.HiddenFor(x => x.ReturnUrl)
+                    <input class="btn btn-sm btn-warning"
+                           type="submit" value="Remove" />
+                }
+            </td>*@
+        </tr>
+    }
+    </tbody>
+    <tfoot>
     <tr>
-        <td>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfExpense)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-        </td>
-        <td>
-            
+        <td colspan="2" class="text-right">Total:</td>
+        <td class="text-right">
+            @Model.Cart.ComputeTotalValue().ToString("c")
         </td>
     </tr>
-}
-
-
+    </tfoot>
 </table>
+<div class="text-center">
 @using (Html.BeginForm("List", "Expense"))
-{
+{       
     <div class="form-group">
         @Html.TextBox("Description")
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Send</button>
 }
+</div>

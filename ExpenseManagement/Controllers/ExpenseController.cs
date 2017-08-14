@@ -28,11 +28,10 @@ namespace ExpenseManagement.Controllers
 
         public ViewResult List(ExpenseCart cart)
         {
-            var userId = User.Identity.GetUserId();
-
-            var items = cart.Lines;
-
-            return View(items);
+            return View(new ExpenseCartViewModel()
+            {
+                Cart = cart,
+            });
 
         }
         [HttpPost]

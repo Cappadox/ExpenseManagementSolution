@@ -37,10 +37,16 @@ namespace ExpenseManagement.Core.Repository
                 .ToList();
         }
 
-        public IEnumerable<VPExpense> GetExpenses()
+        public IEnumerable<VPExpense> GetExpensesNotApproved()
         {
-            return context.Expense.ToList();
+            return context.Expense.Where(a=>a.ExpenseHistory.IsApproved==false).ToList();
         }
+
+        public IEnumerable<VPExpense> GetExpensesNotPaid()
+        {
+            return context.Expense.Where(a => a.ExpenseHistory.IsPaid == false).ToList();
+        }
+
 
         public string GetUsername(string userid)
         {
@@ -72,10 +78,10 @@ namespace ExpenseManagement.Core.Repository
         {
             return context.Expense.FirstOrDefault(a => a.Id == id);
         }
-        public float ComputeTotalValue(int id)
-        {
-            return lineCollection.Sum(e => e.Amount);
+        //public float ComputeTotalValue(int id)
+        //{
+        //    return lineCollection.Sum(e => e.Amount);
 
-        }
+        //}
     }
 }

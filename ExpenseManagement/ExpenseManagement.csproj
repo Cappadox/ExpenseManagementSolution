@@ -219,6 +219,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Core\Models\ApplicationUser.cs" />
     <Compile Include="Core\Models\ExpenseCart.cs" />
     <Compile Include="Core\Models\IApplicationDbContext.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Core\Repository\IExpenseHistoryRepository.cs" />
     <Compile Include="Core\Repository\IExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\IExpenseRepository.cs" />
+    <Compile Include="Core\ViewModels\ExpenseCartViewModel.cs" />
     <Compile Include="Core\ViewModels\ExpenseFormViewModel.cs" />
     <Compile Include="Core\ViewModels\ExpenseHistoryViewModel.cs" />
     <Compile Include="Core\ViewModels\ExpenseViewModel.cs" />
@@ -352,9 +354,14 @@
     <Content Include="Views\Manager\Details.cshtml" />
     <Content Include="Views\Accountant\PendingExpenses.cshtml" />
     <Content Include="Views\Accountant\Details.cshtml" />
+    <Content Include="Views\Shared\_NavigationPublic.cshtml" />
+    <Content Include="Views\Shared\_NavigationManager.cshtml" />
+    <Content Include="Views\Shared\_NavigationAccountant.cshtml" />
+    <Content Include="Views\Shared\_NavigationEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Nav\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

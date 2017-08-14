@@ -27,7 +27,7 @@ namespace ExpenseManagement.Controllers
         
         public ActionResult ExpenseList()
         {
-            var expenses = repository.GetExpenses();
+            var expenses = repository.GetExpensesNotApproved();
             var viewmodel = new List<ExpenseViewModel>();
            
             
@@ -53,7 +53,7 @@ namespace ExpenseManagement.Controllers
         }
 
         [HttpPost]
-       
+        [ValidateAntiForgeryToken]
         public ActionResult SendExpense(int id)
         {
         var expense=repository.GetExpense(id);

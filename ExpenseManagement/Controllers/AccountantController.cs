@@ -28,7 +28,7 @@ namespace ExpenseManagement.Controllers
         // GET: Accountant
         public ActionResult PendingExpenses()
         {
-            var expenses = repository.GetExpenses();
+            var expenses = repository.GetExpensesNotPaid();
             var viewmodel = new List<ExpenseViewModel>();
 
 
@@ -39,9 +39,7 @@ namespace ExpenseManagement.Controllers
                     id = item.Id,
                     Description = item.Description,
                     Date = item.DateOfExpense,
-                    Username = repository.GetUsername(item.UserId),
-                    TotalAmount=
-                    
+                    Username = repository.GetUsername(item.UserId)                   
                 });
 
             }
@@ -57,7 +55,7 @@ namespace ExpenseManagement.Controllers
         }
 
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
         public ActionResult PayExpense(int id)
         {
             var expense = repository.GetExpense(id);

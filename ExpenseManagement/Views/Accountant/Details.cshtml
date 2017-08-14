@@ -2,48 +2,60 @@
 
 @{
     ViewBag.Title = "Details";
+    float total = 0;
 }
 
 <h2>Details</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfExpense)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<style>
+    #cartTable td {
+        vertical-align: middle;
+    }
+</style>
+<h2>Your cart</h2>
+<table id="cartTable" class="table">
+    <thead>
         <tr>
-            @TempData["id"]=item.ExpenseId
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfExpense)
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
+            <th class="=text-center">Date</th>
+            <th class="text-left">Description</th>
+            <th class="text-right">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model)
+        {
+            total=total+line.Amount;
+            <tr>
+                <td class="text-left">@line.DateOfExpense</td>
+                <td class="text-left">@line.Description</td>
+                <td class="text-right">@line.Amount.ToString("c")</td>
+               
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" class="text-right">Total:</td>
+            <td class="text-right">
+                @total.ToString("c")
             </td>
         </tr>
-    }
-
+    </tfoot>
 </table>
+<tr>
+<th>
 @using (Html.BeginForm("PayExpense", "Accountant", new { id = TempData["id"] }))
 {
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary btn-lg">Approve</button>
+    <button type="submit" class="btn btn-primary btn-sm">Approve</button>
 }
+    </th>
+<th>
+    @using (Html.BeginForm())
+    {
+      
+        <input class="btn btn-sm btn-warning"
+               type="submit" value="Remove" />
+    }
+</th>
+</tr>
