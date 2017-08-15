@@ -9,5 +9,7 @@ namespace ExpenseManagement.Core.Repository
         IEnumerable<VPExpenseItem> GetExpenseItemsByUserId(string userId);
         void RemoveExpenseItem(VPExpenseItem item);
         IEnumerable<VPExpenseItem> GetExpenseItemsByExpenseId(int expenseid);
+        VPExpenseItem GetExpenseItem(int id);
+        void UpdateExpenseItem(VPExpenseItem item);
     }
 }

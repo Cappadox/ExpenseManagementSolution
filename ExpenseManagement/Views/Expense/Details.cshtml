@@ -1,0 +1,52 @@
+﻿
+@model IEnumerable<ExpenseManagement.Core.Models.VPExpenseItem>
+
+@{
+    ViewBag.Title = "Details";
+    float total = 0;
+}
+
+<h2>Details</h2>
+
+
+<style>
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+    #cartTable td {
+        vertical-align: middle;
+    }
+</style>
+<h2>Your cart</h2>
+<table id="cartTable" class="table">
+    <thead>
+    <tr>
+        <th class="=text-center">Date</th>
+        <th class="text-left">Description</th>
+        <th class="text-right">Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var line in Model)
+    {
+        total=total+line.Amount;
+        <tr>
+            <td class="text-left">@line.DateOfExpense</td>
+            <td class="text-left">@line.Description</td>
+            <td class="text-right">@line.Amount.ToString("c")</td>
+            <td>
+                @Html.ActionLink("Edit", "EditExpense", new {  id=line.Id })</td>
+               
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2" class="text-right">Total:</td>
+        <td class="text-right">
+            @total.ToString("c")
+        </td>
+    </tr>
+    </tfoot>
+</table>

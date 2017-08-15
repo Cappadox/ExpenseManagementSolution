@@ -61,5 +61,13 @@ namespace ExpenseManagement.Controllers
           HistoryRepository.UpdateExpenseHistory(status);
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        public ActionResult Reject(int id,string rejectioncomment)
+        {
+          
+            repository.RejectionExpense(id, rejectioncomment);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

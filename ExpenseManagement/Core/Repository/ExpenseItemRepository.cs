@@ -35,7 +35,10 @@ namespace ExpenseManagement.Core.Repository
 
         }
 
-        
+        public VPExpenseItem GetExpenseItem(int id)
+        {
+            return _Context.ExpenseItem.FirstOrDefault(a=>a.Id==id);
+        }
 
         public IEnumerable<VPExpenseItem> GetExpenseItemsByExpenseId(int expenseid)
         {
@@ -46,5 +49,14 @@ namespace ExpenseManagement.Core.Repository
 
         }
 
+       public void UpdateExpenseItem(VPExpenseItem item)
+        {
+ 
+            var expenseitem = _Context.ExpenseItem.FirstOrDefault(a => a.Id == item.Id);
+            expenseitem.Amount = item.Amount;
+            expenseitem.DateOfExpense = item.DateOfExpense;
+            expenseitem.Description = item.Description;
+            _Context.SaveChanges();
+        }
     }
 }

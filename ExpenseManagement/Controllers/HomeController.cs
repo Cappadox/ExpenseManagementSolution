@@ -8,6 +8,11 @@ namespace ExpenseManagement.Controllers
 {
     public class HomeController : Controller
     {
+
+        public ActionResult ModalPopup()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             return View();

@@ -24,7 +24,6 @@ namespace ExpenseManagement.Core.Models
         public string RejectionComment { get; set; }
         public string Description { get; set; }
         public ICollection<VPExpenseItem> ExpenseItems { get; set; }
-
         public int StatusId { get; set; }
 
         [ForeignKey("StatusId")]

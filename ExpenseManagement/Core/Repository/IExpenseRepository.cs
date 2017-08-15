@@ -14,5 +14,7 @@ namespace ExpenseManagement.Core.Repository
          VPExpense GetExpense(int id);
         IEnumerable<VPExpense> GetExpensesNotApproved();
         IEnumerable<VPExpense> GetExpensesNotPaid();
+        void RejectionExpense(int id, string comment);
+        IEnumerable<VPExpense> GetReturnedExpenses(string userid);
     }
 }

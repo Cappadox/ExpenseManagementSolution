@@ -9,9 +9,13 @@
 
 
 <style>
-    #cartTable td {
-        vertical-align: middle;
-    }
+     .modal-content {
+         width: 600px !important;
+         margin: 30px auto !important;
+     }
+     #cartTable td {
+         vertical-align: middle;
+     }
 </style>
 <h2>Your cart</h2>
 <table id="cartTable" class="table">
@@ -43,20 +47,28 @@
     </tr>
     </tfoot>
 </table>
-<tr>
-    <th>
-        @using (Html.BeginForm("SendExpense", "Manager",new {id=TempData["id"] }))
-        {
-            @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-primary btn-lg">Approve</button>
-        }
-    </th>
-    <th>
-        @using (Html.BeginForm())
-        {
-      
-            <input class="btn btn-sm btn-warning"
-                   type="submit" value="Remove" />
-        }
-    </th>
-</tr>
+        <table class="text-center">
+            <tr>
+                <td>
+                    @using (Html.BeginForm("SendExpense", "Manager", new { id = TempData["id"] }))
+                    {
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-primary">Approve</button>
+                    }
+                </td>
+                <td>
+                @using (Html.BeginForm("Reject", "Manager", new {id = TempData["id"]}))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.TextArea("rejectioncomment")
+                    </div>
+                    <div class="col-md-6 col-md-push-3">
+                        <div class="">
+                            <button type="submit" class="btn btn-danger">Reject</button>
+                        </div>
+                    </div>
+                }
+                </td>
+            </tr>
+        </table>

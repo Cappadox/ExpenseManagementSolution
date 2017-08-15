@@ -14,8 +14,10 @@ namespace ExpenseManagement.Controllers
         private ApplicationDbContext _Context;
         private IExpenseItemRepository repository;
         private IExpenseRepository expenserepo;
-        public ExpenseController(IExpenseItemRepository repo, IExpenseRepository repo2)
+        public ExpenseController(IExpenseItemRepository repo, IExpenseRepository repo2,
+            IExpenseItemRepository repo3)
         {
+            repository = repo3;
             expenserepo = repo2;
             repository = repo;
         }
@@ -25,7 +27,30 @@ namespace ExpenseManagement.Controllers
             return View();
         }
 
+        public ActionResult Notifications()
+        {
+            var userId = User.Identity.GetUserId();
 
+            var viewmodel=expenserepo.GetReturnedExpenses(userId);
+
+            return View(viewmodel);
+        }
+
+        public ActionResult EditExpense(int id)
+        {
+            var model = repository.GetExpenseItem(id);
+            return View(model);
+
+        }
+        [HttpPost]
+        public ActionResult EditExpense(VPExpenseItem viewModel)
+        {
+           
+           repository.UpdateExpenseItem(viewModel);
+
+            return RedirectToAction("Index","Home");
+
+        }
         public ViewResult List(ExpenseCart cart)
         {
             return View(new ExpenseCartViewModel()
@@ -55,6 +80,12 @@ namespace ExpenseManagement.Controllers
 
             return RedirectToAction("Index", "Home");
 
+        }
+
+        public ActionResult Details(int id)
+        {
+            var model=repository.GetExpenseItemsByExpenseId(id);
+            return View(model);
         }
         public ActionResult AddExpense()
         {

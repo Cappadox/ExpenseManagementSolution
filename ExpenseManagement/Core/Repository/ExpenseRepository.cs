@@ -12,9 +12,9 @@ namespace ExpenseManagement.Core.Repository
     {
         private ApplicationDbContext context;
 
-        public ExpenseRepository(ApplicationDbContext _context)
+        public ExpenseRepository()
         {
-            context = _context;
+            context = new ApplicationDbContext();
         }
 
         public void AddExpense(VPExpense item)
@@ -26,7 +26,17 @@ namespace ExpenseManagement.Core.Repository
 
         public void RemoveExpense(VPExpense item)
         {
-            context.Expense.Remove(item);
+            try
+            {
+                context.Expense.Remove(item);
+            }
+
+            catch (Exception ex)
+            {
+              // TODO log this error
+                
+            }
+
         }
 
         public IEnumerable<VPExpense> GetExpenseItemsByUserId(string userId)
@@ -78,10 +88,21 @@ namespace ExpenseManagement.Core.Repository
         {
             return context.Expense.FirstOrDefault(a => a.Id == id);
         }
-        //public float ComputeTotalValue(int id)
-        //{
-        //    return lineCollection.Sum(e => e.Amount);
 
-        //}
+        public void RejectionExpense(int id, string comment)
+        {
+            var expense = context.Expense.FirstOrDefault(a => a.Id == id);
+            expense.RejectionComment = comment;
+            context.SaveChanges();
+
+        }
+
+        public IEnumerable<VPExpense> GetReturnedExpenses(string userid)
+        {
+           return context.Expense.Where(a => a.UserId == userid && a.RejectionComment != null);
+
+
+        }
+
     }
 }

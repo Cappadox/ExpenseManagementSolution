@@ -58,6 +58,10 @@ namespace ExpenseManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PayExpense(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("PendingExpenses");
+            }
             var expense = repository.GetExpense(id);
             int status = (expense.StatusId);
             var userId = User.Identity.GetUserId();
