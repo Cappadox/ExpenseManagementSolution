@@ -1,5 +1,6 @@
 using ExpenseManagement.Core.Models;
 using ExpenseManagement.Core.Repository;
+using ExpenseManagement.Persistence;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ExpenseManagement.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ExpenseManagement.App_Start.NinjectWebCommon), "Stop")]

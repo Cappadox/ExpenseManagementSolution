@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using ExpenseManagement.Core.Models;
+using ExpenseManagement.Persistence.Repositories;
 using Microsoft.Ajax.Utilities;
 
 namespace ExpenseManagement.Core.Repository

@@ -230,9 +230,9 @@
     <Compile Include="Core\Repository\ExpenseHistoryRepository.cs" />
     <Compile Include="Core\Repository\ExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\ExpenseRepository.cs" />
-    <Compile Include="Core\Repository\IExpenseHistoryRepository.cs" />
-    <Compile Include="Core\Repository\IExpenseItemRepository.cs" />
-    <Compile Include="Core\Repository\IExpenseRepository.cs" />
+    <Compile Include="Persistence\Repositories\IExpenseHistoryRepository.cs" />
+    <Compile Include="Persistence\Repositories\IExpenseItemRepository.cs" />
+    <Compile Include="Persistence\Repositories\IExpenseRepository.cs" />
     <Compile Include="Core\ViewModels\ExpenseCartViewModel.cs" />
     <Compile Include="Core\ViewModels\ExpenseFormViewModel.cs" />
     <Compile Include="Core\ViewModels\ExpenseHistoryViewModel.cs" />

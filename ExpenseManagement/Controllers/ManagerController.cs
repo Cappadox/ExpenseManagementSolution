@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ExpenseManagement.Core.Models;
 using ExpenseManagement.Core.Repository;
 using ExpenseManagement.Core.ViewModels;
+using ExpenseManagement.Persistence;
 
 namespace ExpenseManagement.Controllers
 {

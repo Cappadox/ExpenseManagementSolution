@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ExpenseManagement.Core.Models;
 
-namespace ExpenseManagement.Core.Repository
+namespace ExpenseManagement.Persistence.Repositories
 {
     public interface IExpenseItemRepository
     {

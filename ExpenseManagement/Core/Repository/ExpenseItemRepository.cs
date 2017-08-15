@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Web;
 using ExpenseManagement.Core.Models;
+using ExpenseManagement.Persistence.Repositories;
 
 namespace ExpenseManagement.Core.Repository
 {
