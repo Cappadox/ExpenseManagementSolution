@@ -14,6 +14,7 @@ namespace ExpenseManagement.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Persistence.Repositories;
 
     public static class NinjectWebCommon 
     {

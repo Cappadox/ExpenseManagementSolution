@@ -1,3 +1,75 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<style>
+    .modal-dialog-center {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+        margin-top: 25%;
+    }
+    .modal {
+        text-align: center;
+        padding: 0!important;
+    }
+
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px; /* Adjusts for spacing */
+    }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
+<table class="text-center">
+    <tr>
+        <td>
+            @using (Html.BeginForm("SendExpense", "Manager", new { id = TempData["id"] }))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">Approve</button>
+            }
+        </td>
+        <td>
+            <div class="bs-example">
+                <!-- Button HTML (to Trigger Modal) -->
+                <a href="#myModal" class="btn btn-lg btn-danger" data-toggle="modal">Reject</a>
+
+                <!-- Modal HTML -->
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <h4 class="modal-title">Rejection Comment</h4>
+                            </div>
+                            <div class="modal-body">
+                                @using (Html.BeginForm("Reject", "Manager", new {id = TempData["id"]}))
+                                {
+                                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.TextArea("rejectioncomment")
+                    </div>
+                                   
+                                       
+                           <button type="submit" class="btn btn-danger">Reject</button>
+                                        
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </td>
+    </tr>
+</table>

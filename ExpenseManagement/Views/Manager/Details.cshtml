@@ -9,13 +9,27 @@
 
 
 <style>
-     .modal-content {
-         width: 600px !important;
-         margin: 30px auto !important;
-     }
-     #cartTable td {
-         vertical-align: middle;
-     }
+    .modal {
+        text-align: center;
+        padding: 0!important;
+    }
+
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px; /* Adjusts for spacing */
+    }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+    #cartTable td {
+        vertical-align: middle;
+    }
 </style>
 <h2>Your cart</h2>
 <table id="cartTable" class="table">
@@ -47,28 +61,52 @@
     </tr>
     </tfoot>
 </table>
-        <table class="text-center">
-            <tr>
-                <td>
-                    @using (Html.BeginForm("SendExpense", "Manager", new { id = TempData["id"] }))
-                    {
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-primary">Approve</button>
-                    }
-                </td>
-                <td>
-                @using (Html.BeginForm("Reject", "Manager", new {id = TempData["id"]}))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        @Html.TextArea("rejectioncomment")
-                    </div>
-                    <div class="col-md-6 col-md-push-3">
-                        <div class="">
-                            <button type="submit" class="btn btn-danger">Reject</button>
+<table class="text-center">
+    <tr>
+        <td>
+            @using (Html.BeginForm("SendExpense", "Manager", new { id = TempData["id"] }))
+            {
+                @Html.ValidationSummary()
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">Approve</button>
+            }
+        </td>
+        <td>
+            <div class="bs-example">
+                <!-- Button HTML (to Trigger Modal) -->
+                <a href="#myModal" class="btn btn btn-danger" data-toggle="modal">Reject</a>
+
+                <!-- Modal HTML -->
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <h4 class="modal-title">Rejection Comment</h4>
+                            </div>
+                            <div class="modal-body">
+                                @using (Html.BeginForm("Reject", "Manager", new {id = TempData["id"]}))
+                                {
+                               
+                                    @Html.ValidationSummary()
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        @Html.TextArea("rejectioncomment")
+                                    </div>
+                                   
+                                    <div>
+                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                    </div>  
+                                }
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+                            </div>
                         </div>
                     </div>
-                }
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+           
+        </td>
+    </tr>
+</table>

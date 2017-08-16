@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ExpenseManagement.Core.Models;
-using ExpenseManagement.Core.Repository;
 using ExpenseManagement.Core.ViewModels;
-using ExpenseManagement.Persistence;
+using ExpenseManagement.Persistence.Repositories;
 
 namespace ExpenseManagement.Controllers
 {

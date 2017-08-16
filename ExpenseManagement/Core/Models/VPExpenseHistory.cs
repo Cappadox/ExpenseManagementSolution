@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExpenseManagement.Core.Models
 {
@@ -16,5 +17,7 @@ namespace ExpenseManagement.Core.Models
         public string ModifyBy { get; set; }
         public DateTime? DateOfApproval { get; set; }
         public DateTime? DateOfPayment { get; set; }
+        //public int ExpenseId { get; set; }
+
     }
 }

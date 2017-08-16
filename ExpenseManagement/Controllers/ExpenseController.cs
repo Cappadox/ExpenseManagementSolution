@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity;
 using ExpenseManagement.Core.Models;
 using ExpenseManagement.Core.Repository;
 using System.Web.Security;
-using ExpenseManagement.Persistence;
+using ExpenseManagement.Persistence.Repositories;
 
 namespace ExpenseManagement.Controllers
 {

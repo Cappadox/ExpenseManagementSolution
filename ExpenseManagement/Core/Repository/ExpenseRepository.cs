@@ -50,12 +50,15 @@ namespace ExpenseManagement.Core.Repository
 
         public IEnumerable<VPExpense> GetExpensesNotApproved()
         {
-            return context.Expense.Where(a=>a.ExpenseHistory.IsApproved==false).ToList();
+            return context.Expense.Where(a=>a.ExpenseHistory.
+            IsApproved==false && a.RejectionComment==null)
+                .ToList();
         }
 
         public IEnumerable<VPExpense> GetExpensesNotPaid()
         {
-            return context.Expense.Where(a => a.ExpenseHistory.IsPaid == false).ToList();
+            return context.Expense.Where(a => a.ExpenseHistory.
+            IsPaid == false).ToList();
         }
 
 
