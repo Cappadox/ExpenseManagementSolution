@@ -33,7 +33,7 @@ namespace ExpenseManagement.Controllers
                 {
                     id=item.Id,
                     Description = item.Description,
-                    Date = item.DateOfExpense,
+                    Date = item.ExpenseDate,
                     Username = repository.GetUsername(item.UserId)
                 });
 
@@ -53,7 +53,7 @@ namespace ExpenseManagement.Controllers
         public ActionResult SendExpense(int id)
         {
         var expense=repository.GetExpense(id);
-            int status = (expense.StatusId);
+            int status = 1;/*(expense.StatusId);*/
           HistoryRepository.UpdateExpenseHistory(status);
             return RedirectToAction("Index", "Home");
         }

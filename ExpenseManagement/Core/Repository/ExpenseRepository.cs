@@ -50,15 +50,16 @@ namespace ExpenseManagement.Core.Repository
 
         public IEnumerable<VPExpense> GetExpensesNotApproved()
         {
-            return context.Expense.Where(a=>a.ExpenseHistory.
-            IsApproved==false && a.RejectionComment==null)
+            return context.Expense.Where(a=>
+           a.RejectionComment == null)
                 .ToList();
         }
 
         public IEnumerable<VPExpense> GetExpensesNotPaid()
         {
-            return context.Expense.Where(a => a.ExpenseHistory.
-            IsPaid == false).ToList();
+            return context.Expense.Where(a =>
+                    a.RejectionComment == null)
+                .ToList();
         }
 
 
@@ -77,14 +78,14 @@ namespace ExpenseManagement.Core.Repository
         public VPExpenseHistory GetExpenseHistory(int id)
         {
             var expense = context.Expense.FirstOrDefault(a => a.Id == id);
-            
-            return expense.ExpenseHistory;
+
+            return new VPExpenseHistory();
         }
 
         public void UpdateExpenseHistory(int id,VPExpenseHistory history)
         {
             var expense = context.Expense.FirstOrDefault(a => a.Id == id);
-            expense.ExpenseHistory = history;
+            //expense.ExpenseHistory = history;
             context.Expense.AddOrUpdate(expense);
         }
 

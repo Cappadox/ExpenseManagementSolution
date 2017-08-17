@@ -33,9 +33,7 @@ namespace ExpenseManagement.Core.Repository
         {
           
             var expense = context.ExpenseHistory.FirstOrDefault(a => a.Id == id);
-            expense.DateOfApproval=DateTime.Now;
             expense.ModifyDate = DateTime.Now;
-            expense.IsApproved = true;
             context.SaveChanges();
         }
 
@@ -43,8 +41,7 @@ namespace ExpenseManagement.Core.Repository
         {
             var expense = context.ExpenseHistory.FirstOrDefault(a => a.Id == id);
             var user = context.Users.FirstOrDefault(a => a.Id == userid);
-            expense.DateOfPayment = DateTime.Now;
-            expense.IsPaid = true;
+          
             expense.ModifyBy = user.UserName;
             context.SaveChanges();
         }

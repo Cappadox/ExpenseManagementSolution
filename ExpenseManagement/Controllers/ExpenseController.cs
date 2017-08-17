@@ -66,7 +66,7 @@ namespace ExpenseManagement.Controllers
             var userId = User.Identity.GetUserId();
             var expense = cart.GetExpense();
             expense.UserId = userId;
-            expense.DateOfExpense = DateTime.Now;
+            expense.ExpenseDate = DateTime.Now;
             expense.Description = description;
             expense.ModifyBy = User.Identity.GetUserName();
             expense.ModifyDate = DateTime.Now;
@@ -76,7 +76,7 @@ namespace ExpenseManagement.Controllers
                 ModifyBy = User.Identity.GetUserName(),
 
             };
-            expense.ExpenseHistory = history;
+            //expense.ExpenseHistory = history;
             expenserepo.AddExpense(expense);
 
             return RedirectToAction("Index", "Home");
@@ -115,7 +115,7 @@ namespace ExpenseManagement.Controllers
             VPExpenseItem item = new VPExpenseItem
             {
                 Amount = ViewModel.Amount,
-                DateOfExpense = ViewModel.GetDateTime(),
+                ExpenseDate = ViewModel.GetDateTime(),
                 UserId = userId,
                 Description = ViewModel.Description
 

@@ -11,6 +11,15 @@ namespace ExpenseManagement.Core.Models
         public DbSet<VPExpenseItem> ExpenseItem { get; set; }
         public DbSet<VPExpenseHistory> ExpenseHistory { get; set; }
 
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<VPExpenseHistory>()
+        //        .HasRequired<VPExpense>(p => p.Expense)
+        //        .WithMany()
+        //        .WillCascadeOnDelete(false);
+
+        //    //player - club team relations    
+        //}
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

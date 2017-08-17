@@ -7,17 +7,17 @@ namespace ExpenseManagement.Core.Models
     {
         public VPExpenseHistory()
         {
-            IsApproved = false;
-            IsPaid = false;
+           
         }
         public int Id { get; set; }
-        public bool IsPaid { get; set; }
-        public bool IsApproved { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyBy { get; set; }
-        public DateTime? DateOfApproval { get; set; }
-        public DateTime? DateOfPayment { get; set; }
-        //public int ExpenseId { get; set; }
+        //public DateTime? DateOfApproval { get; set; }
+        //public DateTime? DateOfPayment { get; set; }
 
+        public int ExpenseId { get; set; }
+
+        [ForeignKey("ExpenseId")]
+        public VPExpense Expense { get; set; }
     }
 }

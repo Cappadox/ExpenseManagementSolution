@@ -55,7 +55,7 @@ namespace ExpenseManagement.Core.Repository
  
             var expenseitem = _Context.ExpenseItem.FirstOrDefault(a => a.Id == item.Id);
             expenseitem.Amount = item.Amount;
-            expenseitem.DateOfExpense = item.DateOfExpense;
+            expenseitem.ExpenseDate = item.ExpenseDate;
             expenseitem.Description = item.Description;
             _Context.SaveChanges();
         }
