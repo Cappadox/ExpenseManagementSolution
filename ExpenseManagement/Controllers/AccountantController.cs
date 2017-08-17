@@ -61,21 +61,16 @@ namespace ExpenseManagement.Controllers
         public ActionResult PayExpense(int id)
         {
 
-
-
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("PendingExpenses");
             }
-           
+               
+                var userId = User.Identity.GetUserName();
 
-                var expense = repository.GetExpense(id);
-            int status = 1;/* (expense.StatusId);*/
-                var userId = User.Identity.GetUserId();
+                HistoryRepository.AddExpenseHistory(id, userId);
 
-
-                HistoryRepository.UpdateExpenseHistoryPayment(status, userId);
-
+                repository.UpdateStatusPayment(id);
 
                 return RedirectToAction("Index", "Home");
                 ;

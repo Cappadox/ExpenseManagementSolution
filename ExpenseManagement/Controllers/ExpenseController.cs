@@ -64,12 +64,14 @@ namespace ExpenseManagement.Controllers
         public ActionResult List(ExpenseCart cart, string description)
         {
             var userId = User.Identity.GetUserId();
+           
             var expense = cart.GetExpense();
             expense.UserId = userId;
-            expense.ExpenseDate = DateTime.Now;
+            expense.ModifyBy = User.Identity.GetUserName();
+            expense.ExpenseDate=DateTime.Now;
             expense.Description = description;
             expense.ModifyBy = User.Identity.GetUserName();
-            expense.ModifyDate = DateTime.Now;
+            expense.Status=Status.WaitingApprove;
 
             VPExpenseHistory history = new VPExpenseHistory
             {

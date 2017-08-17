@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using ExpenseManagement.Core.ViewModels;
 using ExpenseManagement.Persistence.Repositories;
+using Microsoft.AspNet.Identity;
 
 namespace ExpenseManagement.Controllers
 {
@@ -52,9 +53,9 @@ namespace ExpenseManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SendExpense(int id)
         {
-        var expense=repository.GetExpense(id);
-            int status = 1;/*(expense.StatusId);*/
-          HistoryRepository.UpdateExpenseHistory(status);
+            string username=User.Identity.GetUserName();
+          HistoryRepository.AddExpenseHistory(id,username);
+            repository.UpdateStatus(id);
             return RedirectToAction("Index", "Home");
         }
 

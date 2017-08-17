@@ -242,6 +242,18 @@
     <Compile Include="Migrations\201708081403591_extendtables.Designer.cs">
       <DependentUpon>201708170846404_createtables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708171103267_initdatabse.cs" />
+    <Compile Include="Migrations\201708171103267_initdatabse.Designer.cs">
+      <DependentUpon>201708171103267_initdatabse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171112588_datetime.cs" />
+    <Compile Include="Migrations\201708171112588_datetime.Designer.cs">
+      <DependentUpon>201708171112588_datetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171131239_nullabledatetime.cs" />
+    <Compile Include="Migrations\201708171131239_nullabledatetime.Designer.cs">
+      <DependentUpon>201708171131239_nullabledatetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Repositories\IExpenseHistoryRepository.cs" />
     <Compile Include="Persistence\Repositories\IExpenseItemRepository.cs" />
     <Compile Include="Persistence\Repositories\IExpenseRepository.cs" />
@@ -356,6 +368,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708081047364_AddTablesDbSet.resx">
       <DependentUpon>201708170846404_createtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171103267_initdatabse.resx">
+      <DependentUpon>201708171103267_initdatabse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171112588_datetime.resx">
+      <DependentUpon>201708171112588_datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171131239_nullabledatetime.resx">
+      <DependentUpon>201708171131239_nullabledatetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

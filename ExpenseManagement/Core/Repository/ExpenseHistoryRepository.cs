@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ExpenseManagement.Core.Models;
 using ExpenseManagement.Persistence.Repositories;
+using Microsoft.AspNet.Identity;
 
 
 namespace ExpenseManagement.Core.Repository
@@ -17,10 +18,19 @@ namespace ExpenseManagement.Core.Repository
             context = new ApplicationDbContext();
         }
 
-        public void AddExpenseHistory(VPExpenseHistory item)
+        public void AddExpenseHistory(int id,string username)
         {
-            context.ExpenseHistory.Add(item);
-            
+
+          
+            context.ExpenseHistory.Add(new VPExpenseHistory()
+            {
+               ExpenseId = id,
+               ModifyDate = DateTime.Now,
+               ModifyBy = username
+
+        });
+            context.SaveChanges();
+
         }
 
         public void RemoveExpenseHistory(VPExpenseHistory item)

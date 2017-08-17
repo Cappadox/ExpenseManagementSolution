@@ -51,14 +51,14 @@ namespace ExpenseManagement.Core.Repository
         public IEnumerable<VPExpense> GetExpensesNotApproved()
         {
             return context.Expense.Where(a=>
-           a.RejectionComment == null)
+           a.Status == Status.WaitingApprove)
                 .ToList();
         }
 
         public IEnumerable<VPExpense> GetExpensesNotPaid()
         {
             return context.Expense.Where(a =>
-                    a.RejectionComment == null)
+                    a.Status == Status.WaitingPayment)
                 .ToList();
         }
 
@@ -106,6 +106,22 @@ namespace ExpenseManagement.Core.Repository
         {
            return context.Expense.Where(a => a.UserId == userid && a.RejectionComment != null);
 
+
+        }
+
+        public  void UpdateStatus(int id)
+        {
+            var expense = context.Expense.FirstOrDefault(a => a.Id == id);
+            expense.Status=Status.WaitingPayment;
+            context.SaveChanges();
+
+        }
+
+        public void UpdateStatusPayment(int id)
+        {
+            var expense = context.Expense.FirstOrDefault(a => a.Id == id);
+            expense.Status = Status.Paid;
+            context.SaveChanges();
 
         }
 
