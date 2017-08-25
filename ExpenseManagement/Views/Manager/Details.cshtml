@@ -59,19 +59,22 @@
 <div class="bs-example">
     <!-- Button HTML (to Trigger Modal) -->
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                @using (Html.BeginForm("SendExpense", "Manager", new { id = TempData["id"] }))
-                {
-                    @Html.ValidationSummary()
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-primary">Approve</button>
-                }
-            </div>
-            <div class="col-sm-4">       
+        
+        <div class="=form-group">
+            @using (Html.BeginForm("SendExpense", "Manager", new { id = TempData["id"] }))
+            {
+                @Html.ValidationSummary()
+                @Html.AntiForgeryToken()
+
+                <button type="submit" class="btn btn-primary">Approve</button>
+
+            }
+        </div>     
+        
+        <div class="form-group">
                 <a href="#myModal" class="btn  btn-danger" data-toggle="modal">Reject</a>
             </div>
-        </div>
+        
     </div>
                
       

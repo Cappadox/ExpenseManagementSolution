@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ExpenseManagement.Core.ViewModels;
 
 namespace ExpenseManagement.Controllers
 {
@@ -17,33 +19,64 @@ namespace ExpenseManagement.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult AddUser()
+        {
+            ExpenseViewModel model = new ExpenseViewModel();
+
+            return PartialView("_AddUser", model);
+        }
         public ActionResult Index()
         {
-            //if (ModelState.IsValid)
-            //{
-            //    var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
-            //    var message = new MailMessage();
-            //    message.To.Add(new MailAddress("cappadox50@gmail.com"));  // replace with valid value 
-            //    message.From = new MailAddress("sevketcrt@gmail.com");  // replace with valid value
-            //    message.Subject = "Test Mail";
-            //    message.Body = string.Format(body, "dsadas", "ewqeq", "edsfgdfd");
-            //    message.IsBodyHtml = true;
+             string MailToAddress = "cappadox50@gmail.com";
+            string MailFromAddress = "sevket.cerit@veripark.com";
+                bool UseSsl = true;
+             string Username = "sevket.cerit@veripark.com";
+             string Password = "781450Sevko.";
+             string ServerName = "mail.veripark.com";
+            int ServerPort = 25;
+            bool WriteAsFile = true;
+            string FileLocation = @"c:\Emails";
 
-            //    using (var smtp = new SmtpClient())
-            //    {
-            //        var credential = new NetworkCredential
-            //        {
-            //            UserName = "sevketcrt@gmail.com",  // replace with valid value
-            //            Password = "781450sevko"  // replace with valid value
-            //        };
-            //        smtp.Credentials = credential;
-            //        smtp.Host = "smtp.gmail.com";
-            //        smtp.Port = 587;
-            //        //smtp.EnableSsl = true;
-            //        await smtp.SendMailAsync(message);
-            //        return RedirectToAction("Index");
-            //    }
-            //}
+            using (var smtpClient = new SmtpClient())
+            {
+
+                smtpClient.EnableSsl = UseSsl;
+                smtpClient.Host = ServerName;
+                smtpClient.Port = ServerPort;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials
+                    = new NetworkCredential(Username,
+                       Password);
+
+                if (WriteAsFile)
+                {
+                    smtpClient.DeliveryMethod
+                        = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    smtpClient.PickupDirectoryLocation = FileLocation;
+                    smtpClient.EnableSsl = false;
+                }
+
+                StringBuilder body = new StringBuilder()
+                    .AppendLine("A new order has been submitted")
+                    .AppendLine("---")
+                    .AppendLine("Items:");
+
+              
+
+                MailMessage mailMessage = new MailMessage(
+                    MailFromAddress,   // From
+                    MailToAddress,     // To
+                    "New order submitted!",          // Subject
+                    body.ToString());                // Body
+
+                if (WriteAsFile)
+                {
+                    mailMessage.BodyEncoding = Encoding.ASCII;
+                }
+
+                smtpClient.Send(mailMessage);
+            }
             return View();
 
         }

@@ -56,13 +56,20 @@ namespace ExpenseManagement.Controllers
             string username=User.Identity.GetUserName();
           HistoryRepository.AddExpenseHistory(id,username);
             repository.UpdateStatus(id);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ExpenseList", "Manager");
         }
 
         [HttpPost]
         public ActionResult Reject(int id,string rejectioncomment)
         {
-          
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("ExpenseList", "Manager");
+
+            }
+            string username = User.Identity.GetUserName();
+            repository.UpdateStatus(id);
+            HistoryRepository.AddExpenseHistory(id, username);
             repository.RejectionExpense(id, rejectioncomment);
             return RedirectToAction("Index", "Home");
         }

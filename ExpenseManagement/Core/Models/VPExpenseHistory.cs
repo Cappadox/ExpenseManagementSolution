@@ -5,12 +5,9 @@ namespace ExpenseManagement.Core.Models
 {
     public class VPExpenseHistory
     {
-        public VPExpenseHistory()
-        {
-           
-        }
+       
         public int Id { get; set; }
-        public Nullable<DateTime> ModifyDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
         public string ModifyBy { get; set; }
         //public DateTime? DateOfApproval { get; set; }
         //public DateTime? DateOfPayment { get; set; }

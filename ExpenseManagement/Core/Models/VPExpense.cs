@@ -21,6 +21,7 @@ namespace ExpenseManagement.Core.Models
         {
             ExpenseItems = new Collection<VPExpenseItem>();
             IsDelete = false;
+            IsDelayMailSend = false;
         }
         [Key]
         public int Id { get; set; }
@@ -29,14 +30,15 @@ namespace ExpenseManagement.Core.Models
 
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
-        public Nullable<DateTime> ModifyDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
         public string ModifyBy { get; set; }
-        public Nullable<DateTime> ExpenseDate { get; set; }
+        public DateTime? ExpenseDate { get; set; }
         public string RejectionComment { get; set; }
         public string Description { get; set; }
         public ICollection<VPExpenseItem> ExpenseItems { get; set; }
         public Status Status { get; set; }
         public bool IsDelete { get; set; }
+        public  bool IsDelayMailSend { get; set; }
 
     }
 }

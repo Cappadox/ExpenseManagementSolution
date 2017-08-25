@@ -12,15 +12,17 @@ namespace ExpenseManagement.Controllers
     [Authorize(Roles = "Employee")]
     public class ExpenseController : Controller
     {
-        private ApplicationDbContext _Context;
-        private IExpenseItemRepository repository;
-        private IExpenseRepository expenserepo;
-        public ExpenseController(IExpenseItemRepository repo, IExpenseRepository repo2,
-            IExpenseItemRepository repo3)
+      
+        private IExpenseItemRepository expenseItemRepository;
+        private IExpenseRepository ExpenseRepository;
+        private IExpenseHistoryRepository ExpenseHistoryRepository;
+        public ExpenseController(IExpenseItemRepository expenseitem, IExpenseRepository expense,
+            IExpenseHistoryRepository expensehistory)
         {
-            repository = repo3;
-            expenserepo = repo2;
-            repository = repo;
+            ExpenseRepository = expense;
+            expenseItemRepository = expenseitem;
+            ExpenseHistoryRepository = expensehistory;
+
         }
         // GET: Expense
         public ActionResult Create()
@@ -32,22 +34,25 @@ namespace ExpenseManagement.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var viewmodel=expenserepo.GetReturnedExpenses(userId);
+            var viewmodel=ExpenseRepository.GetReturnedExpenses(userId);
 
             return View(viewmodel);
         }
 
         public ActionResult EditExpense(int id)
         {
-            var model = repository.GetExpenseItem(id);
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Notifications");
+            }
+            var model = expenseItemRepository.GetExpenseItem(id);
             return View(model);
 
         }
         [HttpPost]
         public ActionResult EditExpense(VPExpenseItem viewModel)
         {
-           
-           repository.UpdateExpenseItem(viewModel);
+            expenseItemRepository.UpdateExpenseItem(viewModel);
 
             return RedirectToAction("Index","Home");
 
@@ -67,7 +72,7 @@ namespace ExpenseManagement.Controllers
            
             var expense = cart.GetExpense();
             expense.UserId = userId;
-            expense.ModifyBy = User.Identity.GetUserName();
+            expense.ModifyDate = DateTime.Now;
             expense.ExpenseDate=DateTime.Now;
             expense.Description = description;
             expense.ModifyBy = User.Identity.GetUserName();
@@ -76,18 +81,17 @@ namespace ExpenseManagement.Controllers
             VPExpenseHistory history = new VPExpenseHistory
             {
                 ModifyBy = User.Identity.GetUserName(),
-
+                ModifyDate = DateTime.Now
             };
-            //expense.ExpenseHistory = history;
-            expenserepo.AddExpense(expense);
-
+            ExpenseRepository.AddExpense(expense);
+            cart.Clear();
             return RedirectToAction("Index", "Home");
-
+          
         }
 
         public ActionResult Details(int id)
         {
-            var model=repository.GetExpenseItemsByExpenseId(id);
+            var model= expenseItemRepository.GetExpenseItemsByExpenseId(id);
             return View(model);
         }
         public ActionResult AddExpense()
@@ -120,6 +124,7 @@ namespace ExpenseManagement.Controllers
                 ExpenseDate = ViewModel.GetDateTime(),
                 UserId = userId,
                 Description = ViewModel.Description
+                
 
             };
 

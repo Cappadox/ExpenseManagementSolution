@@ -56,16 +56,38 @@ namespace ExpenseManagement.Migrations
 
             }
 
-            if (!(context.Users.Any(u => u.UserName == "employee@example.com")))
+            if (!(context.Users.Any(u => u.UserName == "sevket.cerit@veripark.com")))
             {
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 ApplicationUser currentUser = context.Users.FirstOrDefault(x =>x.Email=="manager@example.com");
-                var userToInsert = new ApplicationUser { Email = "employee@example.com", PhoneNumber = "0797697898", UserName = "employee@example.com", SuperVisorId=currentUser.Id };
+                var userToInsert = new ApplicationUser { Email = "sevket.cerit@veripark.com", PhoneNumber = "0797697898", UserName = "sevket.cerit@veripark.com", SuperVisorId=currentUser.Id };
                 userManager.Create(userToInsert, "Password@123");
                 UserManager.AddToRole(userToInsert.Id, "Employee");
-
             }
+
+            if (!(context.Users.Any(u => u.UserName == "employee@example.com")))
+            {
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                ApplicationUser currentUser = context.Users.FirstOrDefault(x => x.Email == "manager@example.com");
+                var userToInsert = new ApplicationUser { Email = "employee@example.com", PhoneNumber = "0797697898", UserName = "employee@example.com", SuperVisorId = currentUser.Id };
+                userManager.Create(userToInsert, "Password@123");
+                UserManager.AddToRole(userToInsert.Id, "Employee");
+            }
+
+            if (!(context.Users.Any(u => u.UserName == "sevket.cerit@veripark.com")))
+            {
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                ApplicationUser currentUser = context.Users.FirstOrDefault(x => x.Email == "manager@example.com");
+                var userToInsert = new ApplicationUser { Email = "sevket.cerit@veripark.com", PhoneNumber = "0797697898", UserName = "sevket.cerit@veripark.com", SuperVisorId = currentUser.Id };
+                userManager.Create(userToInsert, "Password@123");
+                UserManager.AddToRole(userToInsert.Id, "Employee");
+            }
+
+
+
         }
     }
 }

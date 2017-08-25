@@ -235,6 +235,7 @@
     <Compile Include="Core\Models\VPExpense.cs" />
     <Compile Include="Core\Models\VPExpenseHistory.cs" />
     <Compile Include="Core\Models\VPExpenseItem.cs" />
+    <Compile Include="Core\Repository\EmailProcessor.cs" />
     <Compile Include="Core\Repository\ExpenseHistoryRepository.cs" />
     <Compile Include="Core\Repository\ExpenseItemRepository.cs" />
     <Compile Include="Core\Repository\ExpenseRepository.cs" />
@@ -253,6 +254,10 @@
     <Compile Include="Migrations\201708171131239_nullabledatetime.cs" />
     <Compile Include="Migrations\201708171131239_nullabledatetime.Designer.cs">
       <DependentUpon>201708171131239_nullabledatetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708231102370_delaymail.cs" />
+    <Compile Include="Migrations\201708231102370_delaymail.Designer.cs">
+      <DependentUpon>201708231102370_delaymail.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Repositories\IExpenseHistoryRepository.cs" />
     <Compile Include="Persistence\Repositories\IExpenseItemRepository.cs" />
@@ -296,6 +301,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\user-index.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -349,6 +356,7 @@
     <Content Include="Views\Expense\EditExpense.cshtml" />
     <Content Include="Views\Expense\Details.cshtml" />
     <Content Include="Views\Emails\Example.cshtml" />
+    <Content Include="Views\Shared\_AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -377,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708171131239_nullabledatetime.resx">
       <DependentUpon>201708171131239_nullabledatetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708231102370_delaymail.resx">
+      <DependentUpon>201708231102370_delaymail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
